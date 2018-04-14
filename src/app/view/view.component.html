@@ -1,0 +1,19 @@
+<div class='container' style='text-align:center'>
+  <div class='row' style="text-align: center">
+    <div class="col-md-12" *ngIf="currentBlog"></div>
+    <h2>{{currentBlog.title}}</h2>
+    <p>posted by {{currentBlog.author}} on {{currentBlog.created | date}}</p>
+  </div>
+
+  <div class="row" *ngIf="currentBlog">
+    <div class="col-md-4">
+      <a class="btn btn-primary" [routerLink]="['/edit',currentBlog.blogId]">Edit</a>
+    </div>
+    <div class="col-md-4">
+        <a class="btn btn-primary" >Delete</a>
+      </div>
+      <div class="col-md-4">
+          <a class="btn btn-primary">Go Back</a>
+        </div>
+  </div>
+</div>
