@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlogServiceService } from './blog-service.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
@@ -14,15 +14,11 @@ export class AppComponent {
 
   public allBlogs: any[] = [];
   public currentBlog;
-  constructor(public _route: ActivatedRoute, public service: BlogServiceService) { }
+  constructor(public _route: ActivatedRoute, public service: BlogServiceService, public router: Router) { }
 
   ngOnInit() {
     //console.log(this._route.snapshot);
-    this.service.getAllBlogs().subscribe(
-      data => {
-        console.log(data);
-        this.allBlogs = data['data'];
-      }
-    )
+
   }
+
 }

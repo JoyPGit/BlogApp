@@ -10,8 +10,10 @@ import { EditComponent } from './edit/edit.component';
 import { BlogServiceService } from './blog-service.service';
 import { HttpModule, Http } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { BlogcompdetailComponent } from './blogcompdetail/blogcompdetail.component';
+import { HomeComponent } from './home/home.component';
 //import both HttpModule and HttpClientModule
+import { FormsModule} from '@angular/forms';
+import { BoldDirective } from './bold.directive'; 
 
 @NgModule({
   declarations: [
@@ -19,19 +21,23 @@ import { BlogcompdetailComponent } from './blogcompdetail/blogcompdetail.compone
     ViewComponent,
     CreateComponent,
     EditComponent,
-    BlogcompdetailComponent
+    HomeComponent,
+    BoldDirective
   ],
   imports: [
     BrowserModule,
     HttpModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
+      {path:'home',component:HomeComponent},
       {path:'create',component:CreateComponent},
       {path:'edit/:blogId',component:EditComponent},
-      {path:'view/:blogId',component:BlogcompdetailComponent}
+      {path:'view/:blogId',component:ViewComponent}
     ])
   ],
   providers: [BlogServiceService],
-  bootstrap: [AppComponent]//this is where appcomp is set as shell page
+  bootstrap: [AppComponent],//this is where appcomp is set as shell page,
+  exports:[ViewComponent]
 })
 export class AppModule { }

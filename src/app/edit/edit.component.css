@@ -1,0 +1,17 @@
+.bold{
+    font-weight: bold; 
+}
+.italics{
+    font-style: italic;
+}
+.normal{
+    font-style: normal;
+}
+.paraPrev{
+    border : 2px solid blue;
+}
+.gh{
+    display: block;
+    width: 500px;
+    word-wrap: break-word;
+}

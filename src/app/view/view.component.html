@@ -1,19 +1,23 @@
-<div class='container' style='text-align:center'>
+<div style="text-align:center; color:red">______________________________________</div>
+<div class='container' style='text-align:center'*ngIf="currentBlog">
   <div class='row' style="text-align: center">
-    <div class="col-md-12" *ngIf="currentBlog"></div>
+    <div class="col-md-12" ></div>
     <h2>{{currentBlog.title}}</h2>
     <p>posted by {{currentBlog.author}} on {{currentBlog.created | date}}</p>
+    <br>
+    <p>having blogId : <b>{{currentBlog.blogId}}</b></p>
+    <button (click)=o() class="button">{{viewVar}}</button>
   </div>
 
-  <div class="row" *ngIf="currentBlog">
+  <div class="row">
     <div class="col-md-4">
       <a class="btn btn-primary" [routerLink]="['/edit',currentBlog.blogId]">Edit</a>
     </div>
     <div class="col-md-4">
-        <a class="btn btn-primary" >Delete</a>
+        <a class="btn btn-primary" (click)="deleteThisBlog()">Delete</a>
       </div>
       <div class="col-md-4">
-          <a class="btn btn-primary">Go Back</a>
+          <a class="btn btn-primary" (click)="goBack()">Go Back</a>
         </div>
   </div>
 </div>

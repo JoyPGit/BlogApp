@@ -1,3 +1,62 @@
-<p>
-  edit works!
-</p>
+<div class="container">
+  <div class='row' style="text-align: left">
+    <div class="col md-12" *ngIf="currentBlog">
+      <!--add this ngIf always-->
+
+      <!--using form having submit form-->
+      <form #createBlogForm="ngForm" (ngSubmit)="saveBlog()">
+
+        <div class="form-group">
+
+          <label>Blog Title</label>
+          <input type="text" name="blogTitle" [(ngModel)]="currentBlog.title" #title="ngModel" class="form-control" placeholder={{currentBlog.title}}
+            required>
+          <!--the ngModel is the entity for 2-way binding-->
+        </div>
+        <!--()is for event binding, [] is for property and [()] called banana in a box is for 2 way binding-->
+        <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
+          Blog Title Required
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" name="blogDescription" [(ngModel)]="currentBlog.description" #description="ngModel" class="form-control"
+            placeholder="Enter Blog Description" required>
+        </div>
+        <div>{{currentBlog.description}}</div>
+        <div class="form-group">
+          <label>Description of Body Html</label>
+          <input type="text" name="blogBodyHtml" [(ngModel)]="currentBlog.bodyHtml" #description="ngModel" class="form-control" 
+          placeholder="Enter Blog Description" required>
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select [(ngModel)]='currentBlog.category' #category="ngModel" name="blogCategory" class="form-control" id="category" required>
+            <option *ngFor="let category of categories" [value]="[category]">{{category}}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!createBlogForm.form.valid">Save blog</button>
+      </form>
+
+      <!--experimental ng-class="{'bold': fontType == 'bold', 'italics': fontType == 'italics'}" -->
+      <div>
+        <input type="text" [(ngModel)]='stringCheckNgModel' ng-class="{'bold': fontType == 'bold', 'italics': fontType == 'italics'}">
+        <button (click)="setTypeItalics()">italics</button><!--to pass parameter use quotes-->
+        <button (click)="setTypeBold()">bold</button>
+        <button (click)='ngCheck()'>NGModel</button>
+        <div class="row">
+          <div class="paraPrev col-md-6">PREVIEW
+            <br>
+            <p class="gh" [ngClass]="{'bold':bold, 
+                            'italics':italics}">{{stringCheckNgModel}}</p>
+          </div>
+          <br>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
